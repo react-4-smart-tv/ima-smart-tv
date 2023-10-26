@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html class="ima-sdk-frame">
+  <head>
+    <title></title>
+    <style type="text/css">
+      .videoAdUiActionCta {
+        position: absolute;
+        bottom: 30px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 5px;
+        max-width: 75%;
+      }
+      .uac-android-on-3p-instream.videoAdUiActionCta,
+      .uac-ios-on-3p-instream.videoAdUiActionCta {
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0.4) 100%
+        );
+        bottom: unset;
+        max-width: 100%;
+        padding: 12px;
+        top: 0;
+        width: 100%;
+      }
+      .newProgressBarVariant .videoAdUiActionCta {
+        bottom: 46px;
+      }
+      .videoAdUiActionCtaInset {
+        font-family: arial, sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        background: white;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 1px 3px rgba(60, 64, 67, 0.5);
+        -moz-box-shadow: 0 1px 3px rgba(60, 64, 67, 0.5);
+        box-shadow: 0 1px 3px rgba(60, 64, 67, 0.5);
+        overflow: hidden;
+        height: 50px;
+        pointer-events: auto;
+      }
+      .uac-android-on-3p-instream .videoAdUiActionCtaInset,
+      .uac-ios-on-3p-instream .videoAdUiActionCtaInset {
+        background: transparent;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+      .videoAdUiActionCtaIconContainer {
+        display: none;
+        min-width: 50px;
+        z-index: 1000;
+      }
+      .uac-android-on-3p-instream .videoAdUiActionCtaIconContainer,
+      .uac-ios-on-3p-instream .videoAdUiActionCtaIconContainer {
+        margin-right: 12px;
+      }
+      .videoAdUiActionCtaTextAndLink {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        -ms-flex-positive: 1;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        overflow: hidden;
+        max-width: 250px;
+      }
+      .uac-android-on-3p-instream .videoAdUiActionCtaTextAndLink,
+      .uac-ios-on-3p-instream .videoAdUiActionCtaTextAndLink {
+        max-width: none;
+        padding: 3px;
+      }
+      .videoAdUiActionCtaText {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+      }
+      .uac-android-on-3p-instream .videoAdUiActionCtaText,
+      .uac-ios-on-3p-instream .videoAdUiActionCtaText {
+        color: #fff;
+      }
+      .videoAdUiActionCtaLink {
+        color: #858b8c;
+        font-size: 12px;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+      }
+      .uac-android-on-3p-instream .videoAdUiActionCtaLink {
+        background-image: url(https://googleads.g.doubleclick.net/pagead/images/gmob/google_play_icon_white.svg);
+        background-repeat: no-repeat;
+        -webkit-background-size: auto 100%;
+        -o-background-size: auto 100%;
+        background-size: auto 100%;
+        color: transparent;
+      }
+      .uac-ios-on-3p-instream .videoAdUiActionCtaLink {
+        background-image: url(https://googleads.g.doubleclick.net/pagead/images/gmob/app_store_icon_white.svg);
+        background-repeat: no-repeat;
+        -webkit-background-size: auto 100%;
+        -o-background-size: auto 100%;
+        background-size: auto 100%;
+        color: transparent;
+      }
+      .videoAdUiActionCtaRightSide {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        min-width: -webkit-max-content;
+      }
+      .videoAdUiActionCtaButton {
+        height: 35px;
+        line-height: 35px;
+        text-transform: uppercase;
+        margin: 5px;
+        padding: 0 8px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .uac-android-on-3p-instream .videoAdUiActionCtaButton,
+      .uac-ios-on-3p-instream .videoAdUiActionCtaButton {
+        margin: 0;
+        padding: 0 20px;
+      }
+      .videoAdUiActionIcon {
+        height: 50px;
+        cursor: pointer;
+      }
+      .actionCtaCollapsibleContainer {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+      }
+      .uac-android-on-3p-instream .actionCtaCollapsibleContainer,
+      .uac-ios-on-3p-instream .actionCtaCollapsibleContainer {
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+      }
+      .videoAdUiFloatingLayer .videoAdUiActionCtaButton {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+      }
+      .videoAdUiFloatingLayer
+        .uac-android-on-3p-instream
+        .videoAdUiActionCtaButton {
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        background-color: #01875f;
+      }
+      .videoAdUiFloatingLayer
+        .uac-ios-on-3p-instream
+        .videoAdUiActionCtaButton {
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+        background-color: #007aff;
+      }
+      .videoAdUiFloatingLayer .videoAdUiActionCtaInset {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+      }
+      .videoAdUiFloatingLayer .videoAdUiActionCtaTextAndLink {
+        overflow: hidden;
+      }
+      .videoAdUiFloatingLayer
+        .actionCtaCollapsibleContainer.actionCtaContainerCollapsed {
+        max-width: 0;
+        -webkit-transition: max-width 1s ease-out;
+        -o-transition: max-width 1s ease-out;
+        transition: max-width 1s ease-out;
+      }
+      .videoAdUiFloatingLayer
+        .actionCtaCollapsibleContainer:not(.actionCtaContainerCollapsed),
+      .videoAdUiFloatingLayer
+        .videoAdUiActionCta:hover
+        .actionCtaCollapsibleContainer {
+        -webkit-transition: max-width 1s ease-out;
+        -o-transition: max-width 1s ease-out;
+        transition: max-width 1s ease-out;
+      }
+      .videoAdUiFloatingLayer .videoAdUiActionCtaExpandIcon,
+      .videoAdUiFloatingLayer
+        .videoAdUiActionCta:hover
+        .videoAdUiActionCtaExpandIcon {
+        display: block;
+        cursor: pointer;
+        background-color: #4688f1;
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        top: 43px;
+        left: 43px;
+        -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12),
+          0 2px 2px 0 rgba(0, 0, 0, 0.24);
+        -moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12),
+          0 2px 2px 0 rgba(0, 0, 0, 0.24);
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12),
+          0 2px 2px 0 rgba(0, 0, 0, 0.24);
+        opacity: 0;
+        border: none;
+        padding: 0;
+        font-size: 100%;
+        outline: 0;
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none;
+      }
+      .videoAdUiFloatingLayer
+        .videoAdUiActionCtaExpandIcon.actionCtaExpandIconShown {
+        opacity: 1;
+        -webkit-transition: opacity 0.15s cubic-bezier(0, 0, 0.2, 1) 0.7s;
+        -o-transition: opacity 0.15s cubic-bezier(0, 0, 0.2, 1) 0.7s;
+        transition: opacity 0.15s cubic-bezier(0, 0, 0.2, 1) 0.7s;
+      }
+      @media (max-width: 480px) {
+        .videoAdUiActionCta {
+          bottom: 18px;
+        }
+        .uac-android-on-3p-instream.videoAdUiActionCta,
+        .uac-ios-on-3p-instream.videoAdUiActionCta {
+          padding: 8px;
+        }
+        .videoAdUiActionCtaInset {
+          height: 35px;
+          font-size: 10px;
+        }
+        .uac-android-on-3p-instream .videoAdUiActionCtaInset,
+        .uac-ios-on-3p-instream .videoAdUiActionCtaInset {
+          font-size: 14px;
+        }
+        .videoAdUiActionCtaButton {
+          height: 25px;
+          line-height: 25px;
+          font-size: 11px;
+          padding: 0 4px;
+        }
+        .videoAdUiActionCtaLink {
+          font-size: 9px;
+        }
+        .uac-android-on-3p-instream .videoAdUiActionCtaTextAndLink,
+        .uac-ios-on-3p-instream .videoAdUiActionCtaTextAndLink {
+          padding: 1px;
+        }
+        .videoAdUiActionIcon {
+          height: 35px;
+        }
+        .videoAdUiActionCtaIconContainer {
+          min-width: 35px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .videoAdUiVariantCtaOverlay .videoAdUiBottomBar {
+          bottom: 65px;
+        }
+        .videoAdUiVariantCtaOverlay .rewardedAdUiBottomBar {
+          bottom: 65px;
+        }
+        .videoAdUiVariantCtaOverlay .videoAdUiPreSkipContainer {
+          bottom: 72px;
+        }
+        .videoAdUiVariantCtaOverlay div.videoAdUiSkipContainer {
+          bottom: 72px;
+        }
+        .videoAdUiVariantCtaOverlay .videoAdUiSkipContainer {
+          bottom: 72px;
+        }
+        .videoAdUiActionCtaTextAndLink {
+          max-width: none;
+        }
+        .videoAdUiActionCta {
+          bottom: 0;
+          width: 100%;
+          max-width: 100%;
+        }
+        .newProgressBarVariant .videoAdUiActionCta {
+          bottom: 0;
+        }
+        .videoAdUiActionCtaInset {
+          width: 100%;
+        }
+      }
+      .videoAdUiButton {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        pointer-events: auto;
+      }
+      .videoAdUiButtonPrimary {
+        background-color: #4285f4;
+        color: white;
+      }
+      .videoAdUiButtonPrimaryInverse {
+        color: #4285f4;
+      }
+      .closeButtonContainer {
+        float: right;
+        height: 24px;
+        width: 24px;
+        padding: 12px;
+        pointer-events: auto;
+        position: relative;
+      }
+      .closeButtonBackground {
+        width: 24px;
+        height: 24px;
+        background-color: #3c4043;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        z-index: 1;
+        position: absolute;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+      }
+      .closeCountdownText {
+        font-size: 16px;
+        color: white;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        z-index: 5;
+        text-align: center;
+        line-height: 24px;
+      }
+      .closeButtonIcon {
+        color: white;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        z-index: 5;
+        text-align: center;
+      }
+      .closeButtonIcon > svg {
+        width: 20px;
+        height: 20px;
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+      }
+      .unifyRefresh .closeButtonContainer {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2000;
+        float: none;
+      }
+      .videoAdUiIconFallback .closeButtonContainer,
+      .overlayContainer .closeButtonContainer {
+        position: absolute;
+        right: 0;
+        top: 0;
+        float: none;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        padding: 6px;
+      }
+      .overlayContainer .closeButtonBackground,
+      .overlayContainer .closeButtonIcon {
+        height: 20px;
+        width: 20px;
+      }
+      .overlayContainer .closeButtonIcon > svg {
+        height: 16px;
+        width: 16px;
+      }
+      .ctaAdvertiserInfo {
+        text-align: center;
+        pointer-events: auto;
+      }
+      .videoAdUiCtaLayer .ctaAdvertiserInfo {
+        display: none;
+      }
+      .videoAdUiTopBar .ctaAdvertiserInfo {
+        padding-top: 40px;
+      }
+      .advertiserChannelThumbnailContainer {
+        margin-bottom: 10px;
+      }
+      .advertiserChannelThumbnail {
+        display: none;
+        height: 50px;
+        width: 50px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        border: 2px solid white;
+        cursor: pointer;
+      }
+      .advertiserDescription {
+        font-family: arial, sans-serif;
+        text-align: center;
+        text-transform: lowercase;
+        font-size: 10px;
+        color: white;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+      .advertiserHeadline {
+        font-family: arial, sans-serif;
+        font-size: 16px;
+        color: white;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .videoAdUiCtaLayer .ctaAdvertiserInfo {
+          display: block;
+          margin-top: 30px;
+          position: absolute;
+          left: 50%;
+          -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+        }
+      }
+      .unifyRefresh .videoAdUiCtaLayer {
+        padding: 24px 8px 0 8px;
+        z-index: 1000;
+        pointer-events: auto;
+      }
+      @media (max-width: 480px) {
+        .advertiserChannelThumbnailContainer {
+          margin-bottom: 6px;
+        }
+        .advertiserChannelThumbnail {
+          height: 35px;
+          width: 35px;
+        }
+        .advertiserHeadline {
+          font-size: 12px;
+        }
+        .advertiserDescription {
+          font-size: 8px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall .videoAdUiCtaLayer {
+          -webkit-box-ordinal-group: 1;
+          -moz-box-ordinal-group: 1;
+          -ms-flex-order: 1;
+          -webkit-order: 1;
+          order: 1;
+          -webkit-flex-basis: 25vh;
+          -ms-flex-preferred-size: 25vh;
+          flex-basis: 25vh;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-flow: column;
+          -webkit-flex-flow: column;
+          flex-flow: column;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+          width: 100%;
+          position: static;
+          margin: none;
+          bottom: none;
+          background-image: none;
+          padding: 0;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .videoAdUiCtaLayer {
+          -webkit-box-ordinal-group: 2;
+          -moz-box-ordinal-group: 2;
+          -ms-flex-order: 2;
+          -webkit-order: 2;
+          order: 2;
+          -webkit-flex-basis: 10vh;
+          -ms-flex-preferred-size: 10vh;
+          flex-basis: 10vh;
+          display: block;
+        }
+      }
+      .endcapUi,
+      .interactiveEndcapUi {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+      .interactiveEndcapUi .sandboxed-iframe-element {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
+      .learnMoreEndcapContainer {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(239, 239, 239, 0.6);
+      }
+      .learnMoreEndcapButton {
+        display: inline-block;
+        position: absolute;
+        top: 58%;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        padding: 8px 18px;
+        font-size: larger;
+        font-family: sans-serif;
+        color: #3e82f7;
+        background-color: #fff;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        border: 1px solid #ddd;
+        text-decoration: none;
+      }
+      .staticImageEndcapContainer {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(239, 239, 239, 1);
+      }
+      .staticImageEndcapContainer > img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      .callToActionContainer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .callToActionButton {
+        padding: 8px 18px;
+        font-size: 12px;
+        font-family: sans-serif;
+        color: #4285f4;
+        background-color: white;
+        border: 1px solid #ddd;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .actionStaticImageEndcapContainer {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: black;
+      }
+      .actionStaticImageEndcapContainer > img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        height: 100%;
+        opacity: 0.4;
+        filter: blur(10px);
+      }
+      .endcapUi .rewardedAdUiBottomBar {
+        z-index: 1;
+      }
+      .endcapUi .rewardedAdUiProgressBar {
+        background-color: rgba(155, 155, 155, 0.4);
+      }
+      .endcapUi .rewardedAdUiProgress {
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-top: -5px;
+      }
+      .unifyRefresh.endcapUi {
+        background: rgba(0, 0, 0, 0.84);
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: column nowrap;
+        -webkit-flex-flow: column nowrap;
+        flex-flow: column nowrap;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+      }
+      .unifyRefresh.endcapUi.fullEndcapImage {
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .unifyRefresh.endcapUi .videoAdUiTopBar {
+        -webkit-align-self: flex-start;
+        -ms-grid-row-align: flex-start;
+        align-self: flex-start;
+        width: 100%;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -ms-flex-positive: 0;
+        -webkit-flex-grow: 0;
+        flex-grow: 0;
+        min-height: 40px;
+        opacity: 1;
+        background: transparent;
+        border: none;
+      }
+      .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiTopBar {
+        position: absolute;
+      }
+      .unifyRefresh.endcapUi:not(.fullEndcapImage) .videoAdUiEndcapContent {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row;
+        -webkit-flex-flow: row;
+        flex-flow: row;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiEndcapContent {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row;
+        -webkit-flex-flow: row;
+        flex-flow: row;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        -webkit-align-items: center;
+        align-items: center;
+        width: 100%;
+        max-width: -webkit-calc(100% - 2 * 48px);
+        max-width: -moz-calc(100% - 2 * 48px);
+        max-width: calc(100% - 2 * 48px);
+        height: 100%;
+        margin: 16px;
+      }
+      .unifyRefresh.endcapUi .videoAdUiEndcapCtaLayer {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: column;
+        -webkit-flex-flow: column;
+        flex-flow: column;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+        min-width: 30vw;
+        margin: 12px;
+      }
+      .unifyRefresh.endcapUi:not(.fullEndcapImage) .videoAdUiEndcapImage {
+        margin: 12px;
+        max-width: 55vw;
+      }
+      .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiEndcapImage {
+        height: 100%;
+        margin: 16px;
+      }
+      .unifyRefresh.endcapUi .videoAdUiEndcapCtaLayer:empty,
+      .unifyRefresh.endcapUi .videoAdUiEndcapImage:empty {
+        display: none;
+      }
+      .unifyRefresh.endcapUi .staticImageEndcapContainer {
+        background: none;
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+        text-align: center;
+        pointer-events: auto;
+        background-color: transparent;
+        height: inherit;
+        position: static;
+        top: auto;
+        left: auto;
+        width: auto;
+      }
+      .unifyRefresh.endcapUi .staticImageEndcapContainer > img {
+        object-fit: contain;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        width: auto;
+      }
+      @media (max-width: 480px) {
+        .callToActionButton {
+          font-size: 8px;
+        }
+        .learnMoreEndcapButton {
+          padding: 4px 9px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.endcapUi {
+          -ms-flex-flow: column nowrap;
+          -webkit-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+        }
+        .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiTopBar {
+          position: relative;
+        }
+        .unifyRefresh.endcapUi .videoAdUiEndcapContent {
+          -ms-flex-flow: column;
+          -webkit-flex-flow: column;
+          flex-flow: column;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-box-flex: 1;
+          box-flex: 1;
+          -ms-flex-positive: 1;
+          -webkit-flex-grow: 1;
+          flex-grow: 1;
+        }
+        .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiEndcapContent {
+          max-width: 100%;
+          height: auto;
+        }
+        .unifyRefresh.endcapUi:not(.fullEndcapImage) .videoAdUiEndcapImage {
+          margin: 8px;
+          max-width: 75vw;
+          max-height: 75vh;
+        }
+        .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiEndcapImage {
+          margin: 16px;
+        }
+        .unifyRefresh.endcapUi .staticImageEndcapContainer {
+          max-width: none;
+        }
+        .unifyRefresh.endcapUi .videoAdUiEndcapCtaLayer {
+          min-height: 20vh;
+          max-width: 75vw;
+        }
+      }
+      .buttonSlot {
+        display: inline-block;
+        height: 100%;
+      }
+      .overlaySelector {
+        background: #666;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        cursor: pointer;
+        height: 10px;
+        width: 10px;
+        right: 5px;
+        top: 5px;
+        position: relative;
+      }
+      .overlaySelector:hover {
+        background: #fff;
+      }
+      .overlaySelector.active {
+        background: #fc0;
+      }
+      .fullSlotContainer {
+        height: 100%;
+        text-align: center;
+        background-color: black;
+      }
+      .fullSlotContentContainer {
+        display: inline-block;
+        position: relative;
+        width: min-content;
+        top: -webkit-calc(50% - 65px);
+        top: -moz-calc(50% - 65px);
+        top: calc(50% - 65px);
+        -webkit-transform: translateY(-50%) translateY(30px);
+        -ms-transform: translateY(-50%) translateY(30px);
+        -o-transform: translateY(-50%) translateY(30px);
+        transform: translateY(-50%) translateY(30px);
+      }
+      .fullSlotContainer .videoAdUiTitleV2 {
+        padding-left: 5px;
+        float: left;
+        color: #999;
+        font-family: Arial;
+        font-size: 10pt;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .fullSlotBottomBar {
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+      }
+      .fullSlotBottomBar .wtaIcon {
+        top: 0;
+      }
+      .ima-sdk-frame body {
+        background: transparent;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      .ima-sdk-frame {
+        height: 100%;
+      }
+      .ima-sdk-frame-native body {
+        background: #000;
+      }
+      .ima-sdk-frame-native video {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        right: 0;
+        top: 0;
+      }
+      .mute_panel {
+        z-index: 2147483646;
+      }
+      .abgac {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2147483646;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: #fafafa;
+      }
+      .abgnac {
+        background-color: rgba(0, 0, 0, 0.6);
+        -webkit-transition: opacity 0.25s ease-out;
+        -o-transition: opacity 0.25s ease-out;
+        transition: opacity 0.25s ease-out;
+        opacity: 0;
+      }
+      .abgacfo {
+        opacity: 1;
+      }
+      .mlsc {
+        height: 100%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .mls {
+        -webkit-animation: mlskf 2s linear infinite;
+        -o-animation: mlskf 2s linear infinite;
+        animation: mlskf 2s linear infinite;
+        height: 50%;
+        width: 50%;
+      }
+      .mlsd {
+        stroke-dasharray: 1, 189;
+        stroke-dashoffset: 0;
+        -webkit-animation: mlsdkf 1.4s ease-in-out infinite;
+        -o-animation: mlsdkf 1.4s ease-in-out infinite;
+        animation: mlsdkf 1.4s ease-in-out infinite;
+      }
+      @keyframes mlskf {
+        to {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes mlsdkf {
+        0% {
+          stroke-dasharray: 1, 189;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 134, 189;
+          stroke-dashoffset: -53px;
+        }
+        to {
+          stroke-dasharray: 134, 189;
+          stroke-dashoffset: -188px;
+        }
+      }
+      .videoAdUiAction:focus {
+        margin: 1px;
+      }
+      .videoAdUiAttribution {
+        vertical-align: middle;
+      }
+      .videoAdUiTopBar-gvn .videoAdUiAttribution {
+        opacity: 1;
+      }
+      .videoAdUiTopBar-gvn .videoAdUiAttributionContainer {
+        color: #e5bb00;
+        font-size: 12px;
+        position: relative;
+        text-shadow: none;
+      }
+      .videoAdUiTopBar-gvn .wtaIconSvg {
+        fill: #e5bb00;
+      }
+      @media all and (min-width: 800px) and (min-height: 400px) {
+        .videoAdUiTopBar-gvn .videoAdUiAttribution {
+          font-size: 16px !important;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .ima-action-ad.videoAdUi .videoAdUiBottomBar {
+          bottom: 60px;
+        }
+        .ima-action-ad.videoAdUi.uac-android-on-3p-instream .videoAdUiBottomBar,
+        .ima-action-ad.videoAdUi.uac-ios-on-3p-instream .videoAdUiBottomBar {
+          bottom: 0;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+        .ima-action-ad.videoAdUi .videoAdUiBottomBar {
+          bottom: 45px;
+        }
+        .ima-action-ad.videoAdUi.uac-android-on-3p-instream .videoAdUiBottomBar,
+        .ima-action-ad.videoAdUi.uac-ios-on-3p-instream .videoAdUiBottomBar {
+          bottom: 0;
+        }
+      }
+      .safeFrameView {
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .safeFrameBottomBar {
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+      }
+      .videoAdUiTitleV2 {
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: arial, sans-serif;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: normal;
+        margin: 10px 5px 5px 5px;
+        text-decoration: none;
+        max-width: 50%;
+        position: relative;
+      }
+      .videoAdUiTitleWithAuthorIcon {
+        margin-left: 60px;
+      }
+      .videoAdUiRtl .videoAdUiTitleWithAuthorIcon {
+        margin-left: 0;
+        margin-right: 60px;
+      }
+      .videoAdUiTitleV2:hover {
+        text-decoration: underline;
+      }
+      @media all and (min-width: 800px) and (min-height: 400px) {
+        .videoAdUiTitleV2 {
+          font-size: 15px;
+        }
+      }
+      .unifyRefresh .videoAdUiTitleV2 {
+        font-size: 16px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        color: #fff;
+        font-weight: bold;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        max-width: -webkit-calc(100% - 2 * 40px - 2 * 8px);
+        max-width: -moz-calc(100% - 2 * 40px - 2 * 8px);
+        max-width: calc(100% - 2 * 40px - 2 * 8px);
+        margin: 0;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiTitleV2 {
+        max-width: 100%;
+        margin: 0 0 0 8px;
+        font-size: 18px;
+      }
+      .videoAdUiInstreamUxRefresh.endcap .videoAdUiTitleV2 {
+        font-size: 36px;
+        display: block;
+        margin-top: 25%;
+        margin-left: 8px;
+      }
+      @media (max-width: 640px), (max-height: 360px) {
+        .videoAdUiInstreamUxRefresh.endcap .videoAdUiTitleV2 {
+          font-size: 24;
+        }
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .videoAdUiTitleV2,
+        .videoAdUiInstreamUxRefresh.endcap .videoAdUiTitleV2 {
+          font-size: 12px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall .videoAdUiTitleV2 {
+          font-size: 18px;
+          color: #3c4043;
+          text-shadow: none;
+        }
+        .unifyRefresh.unifyRefresh-tall:not(.engagement) .videoAdUiTitleV2 {
+          -webkit-box-ordinal-group: 2;
+          -moz-box-ordinal-group: 2;
+          -ms-flex-order: 2;
+          -webkit-order: 2;
+          order: 2;
+          -webkit-box-flex: 0;
+          box-flex: 0;
+          -ms-flex-positive: 0;
+          -webkit-flex-grow: 0;
+          flex-grow: 0;
+          max-width: 100%;
+          margin: 8px 32px;
+          white-space: normal;
+          text-align: center;
+          position: static;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .videoAdUiTitleV2 {
+          margin-top: 25px;
+        }
+        .unifyRefresh.unifyRefresh-tall.background-text-white
+          .videoAdUiTitleV2 {
+          color: #fff;
+        }
+        .unifyRefresh.unifyRefresh-tall.background-text-black
+          .videoAdUiTitleV2 {
+          color: #000;
+        }
+        .unifyRefresh.endcapUi .videoAdUiTitleV2 {
+          max-width: 75vw;
+        }
+      }
+      .unifyRefresh.endcapUi .videoAdUiTitleV2 {
+        position: static;
+        margin: 4px;
+        max-width: 50vw;
+      }
+      .videoAdUiAuthorNameV2 {
+        color: #ccc;
+        cursor: pointer;
+        display: inline-block;
+        font-family: arial, sans-serif;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: normal;
+        margin: 10px 5px 5px 5px;
+        text-decoration: none;
+        position: relative;
+      }
+      .videoAdUiAuthorNameV2:hover {
+        text-decoration: underline;
+      }
+      .ellipsisText {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .unifyRefresh .videoAdUiAuthorNameV2 {
+        font-size: 12px;
+        font-weight: normal;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        color: #fff;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        max-width: -webkit-calc(100% - 2 * 40px - 2 * 8px);
+        max-width: -moz-calc(100% - 2 * 40px - 2 * 8px);
+        max-width: calc(100% - 2 * 40px - 2 * 8px);
+        position: relative;
+        margin: 0;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiAuthorNameV2 {
+        margin: 0 0 0 8px;
+        font-size: 14px;
+        color: #fff;
+      }
+      .videoAdUiInstreamUxRefresh.endcap .videoAdUiAuthorNameV2 {
+        font-size: 24px;
+        width: 50%;
+        white-space: normal;
+        margin-left: 8px;
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .videoAdUiAuthorNameV2 {
+          font-size: 11px;
+        }
+        .videoAdUiInstreamUxRefresh.endcap .videoAdUiAuthorNameV2 {
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 640px), (max-height: 360px) {
+        .videoAdUiInstreamUxRefresh.endcap .videoAdUiAuthorNameV2 {
+          font-size: 18px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall:not(.engagement)
+          .videoAdUiAuthorNameV2 {
+          font-size: 16px;
+          font-weight: normal;
+          color: rgba(0, 0, 0, 0.56);
+          -webkit-box-ordinal-group: 3;
+          -moz-box-ordinal-group: 3;
+          -ms-flex-order: 3;
+          -webkit-order: 3;
+          order: 3;
+          -webkit-box-flex: 0;
+          box-flex: 0;
+          -ms-flex-positive: 0;
+          -webkit-flex-grow: 0;
+          flex-grow: 0;
+          max-width: 100%;
+          margin: 4px 16px;
+          white-space: normal;
+          text-align: center;
+          text-shadow: none;
+          position: static;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .videoAdUiAuthorNameV2 {
+          margin-bottom: 10px;
+          font-size: 15px;
+          color: #000;
+          text-shadow: none;
+        }
+        .unifyRefresh.unifyRefresh-tall.background-text-white
+          .videoAdUiAuthorNameV2 {
+          color: #fff;
+        }
+        .unifyRefresh.unifyRefresh-tall.background-text-black
+          .videoAdUiAuthorNameV2 {
+          color: #000;
+        }
+        .unifyRefresh.endcapUi .videoAdUiAuthorNameV2 {
+          max-width: 75vw;
+        }
+      }
+      .unifyRefresh.endcapUi .videoAdUiAuthorNameV2 {
+        position: static;
+        margin: 4px;
+        max-width: 50vw;
+      }
+      .videoAdUiAutoClose {
+        position: absolute;
+        bottom: 15px;
+        right: 20px;
+        color: #999;
+        font-family: Arial;
+        font-size: 10pt;
+      }
+      .videoAdUi {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        background-color: rgba(0, 0, 0, 0);
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        min-height: 100%;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        overflow: hidden;
+        padding: 0;
+      }
+      .videoAdUi:hover .videoAdUiTopBarTransitions {
+        -webkit-transition: opacity ease-out 0.5s;
+        -moz-transition: opacity ease-out 0.5s;
+        -o-transition: opacity ease-out 0.5s;
+        transition: opacity ease-out 0.5s;
+        opacity: 0.8;
+      }
+      .videoAdUiTopBar {
+        background: #000;
+        border-bottom: 1px solid #444;
+        cursor: default;
+        left: 0;
+        opacity: 0.8;
+        padding: 0;
+        pointer-events: auto;
+        position: relative;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+      }
+      .vpaidUi .videoAdUiTopBar {
+        pointer-events: none;
+      }
+      .uac-android-on-3p-instream .videoAdUiTopBar,
+      .uac-ios-on-3p-instream .videoAdUiTopBar {
+        display: none;
+      }
+      .videoAdUiTopBarWithGradients {
+        background-image: -webkit-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.7) 40%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: -moz-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.7) 40%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: -ms-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.7) 40%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: -o-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.7) 40%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.7) 40%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-color: rgba(0, 0, 0, 0);
+        border-bottom: none;
+        height: 40px;
+      }
+      .videoAdUiTopBarTransitions {
+        -webkit-transition: opacity ease-in 0.5s;
+        -moz-transition: opacity ease-in 0.5s;
+        -o-transition: opacity ease-in 0.5s;
+        transition: opacity ease-in 0.5s;
+        opacity: 0;
+      }
+      .videoAdUiTopBarNoFade {
+        opacity: 0.8 !important;
+      }
+      .videoAdUiClickElement {
+        height: 100%;
+        width: 100%;
+        pointer-events: auto;
+      }
+      .unifyRefresh {
+        background-image: -webkit-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0) 80px
+        );
+        background-image: -moz-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0) 80px
+        );
+        background-image: -ms-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0) 80px
+        );
+        background-image: -o-linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0) 80px
+        );
+        background-image: linear-gradient(
+          top,
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0) 80px
+        );
+      }
+      .unifyRefresh.videoAdUi {
+        z-index: 1000;
+      }
+      .unifyRefresh .videoAdUiClickElement {
+        position: absolute;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+      }
+      .unifyRefresh .rewardedAdUiTopBar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiTopBar {
+        opacity: 1;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiTopBarTextContainer {
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1;
+        order: 1;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        -ms-flex-positive: 1;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        height: 54px;
+        overflow: hidden;
+        -webkit-justify-content: center;
+        justify-content: center;
+      }
+      .videoAdUiInstreamUxRefresh
+        .videoAdUiTopBarCollapsed
+        .videoAdUiTopBarTextContainer {
+        display: none;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiTopBarWithGradients {
+        background-image: -webkit-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        background-image: -moz-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        background-image: -ms-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        background-image: -o-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        background-image: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        height: 86px;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .videoAdUiInstreamUxRefresh.endcap .videoAdUiTopBar {
+        background: none;
+        border: none;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiClickElement {
+        position: absolute;
+        top: 0;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiClickElementPaused {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiTopBarCollapsed {
+        background: none;
+      }
+      .videoAdUiInstreamUxRefresh.endcap {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      @media (max-width: 640px), (max-height: 320px) {
+        .videoAdUiInstreamUxRefresh .videoAdUiTopBarWithGradients {
+          height: 70px;
+        }
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .videoAdUiTopBarWithGradients {
+          height: 48px;
+        }
+        .videoAdUiInstreamUxRefresh .videoAdUiTopBarTextContainer {
+          height: 32px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall {
+          background-image: none;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-direction: column;
+          -webkit-flex-direction: column;
+          flex-direction: column;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+        }
+        .unifyRefresh.unifyRefresh-tall:not(.engagement)
+          .videoAdUiClickElement {
+          -webkit-box-ordinal-group: 2;
+          -moz-box-ordinal-group: 2;
+          -ms-flex-order: 2;
+          -webkit-order: 2;
+          order: 2;
+          height: 56vw;
+          margin: 12px 0;
+          position: static;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .videoAdUiClickElement {
+          -webkit-box-ordinal-group: 1;
+          -moz-box-ordinal-group: 1;
+          -ms-flex-order: 1;
+          -webkit-order: 1;
+          order: 1;
+          position: static;
+        }
+      }
+      .videoAdUiBottomBar {
+        background-image: -webkit-linear-gradient(
+          bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.4) 60%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: -moz-linear-gradient(
+          bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.4) 60%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: -ms-linear-gradient(
+          bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.4) 60%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: -o-linear-gradient(
+          bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.4) 60%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        background-image: linear-gradient(
+          bottom,
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.4) 60%,
+          rgba(0, 0, 0, 0) 99%
+        );
+        bottom: 0;
+        padding: 0;
+        pointer-events: auto;
+        position: absolute;
+        width: 100%;
+        z-index: 1000;
+      }
+      .videoAdUiProgressBar {
+        background-color: #fff;
+        bottom: 0;
+        cursor: default;
+        left: 0;
+        pointer-events: auto;
+        position: absolute;
+        width: 100%;
+        z-index: 1000;
+      }
+      .videoAdUiBuffer {
+        height: 4px;
+        width: 0;
+        display: none;
+      }
+      .videoAdUiProgress {
+        background-image: -webkit-linear-gradient(top, #ffec7b, #dea405);
+        background-image: -moz-linear-gradient(top, #ffec7b, #dea405);
+        background-image: -ms-linear-gradient(top, #ffec7b, #dea405);
+        background-image: -o-linear-gradient(top, #ffec7b, #dea405);
+        background-image: linear-gradient(top, #ffec7b, #dea405);
+        border-right: solid 1px #666;
+        height: 4px;
+        opacity: 0.9;
+        width: 0;
+      }
+      .videoAdUiAttributionContainer {
+        color: #fff;
+        display: inline-block;
+        font-family: arial, sans-serif;
+        font-weight: normal;
+        font-size: 11px;
+        left: 0;
+        line-height: normal;
+        padding: 5px;
+        pointer-events: auto;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        position: absolute;
+        cursor: default;
+      }
+      .videoAdUiAttribution {
+        display: inline-block;
+        opacity: 0.9;
+        text-align: initial;
+      }
+      .rtl .videoAdUiAttribution {
+        direction: rtl;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiAttributionContainer {
+        left: 20px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 10px;
+      }
+      .videoAdUiInstreamUxRefresh
+        .videoAdUiBottomBarCollapsed
+        .videoAdUiAttributionContainer {
+        display: none;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiBottomBar {
+        background: none;
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .videoAdUiAttributionContainer {
+          font-size: 10px;
+        }
+      }
+      @media all and (min-width: 800px) and (min-height: 400px) {
+        .videoAdUiAttribution {
+          font-size: 13px;
+        }
+      }
+      .videoAdUiWtaIconContainer {
+        display: inline-block;
+      }
+      .unifyRefresh.endcapUi .videoAdUiBottomBar {
+        width: 100%;
+        -webkit-box-flex: 0;
+        box-flex: 0;
+        -ms-flex-positive: 0;
+        -webkit-flex-grow: 0;
+        flex-grow: 0;
+        min-height: 40px;
+        position: static;
+        bottom: auto;
+        background-image: none;
+      }
+      .unifyRefresh.endcapUi.fullEndcapImage .videoAdUiBottomBar {
+        min-height: 0;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.endcapUi .videoAdUiBottomBar {
+          min-height: 0;
+        }
+      }
+      .videoAdUiIconImage {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+      }
+      .videoAdUiIconImage:hover {
+        opacity: 0.6;
+      }
+      .videoAdUiIconV2 {
+        display: inline-block;
+        position: relative;
+        z-index: 1000;
+      }
+      .videoAdUiIconV2 > img {
+        cursor: pointer;
+      }
+      .videoAdUiIconV2 > img:hover {
+        opacity: 0.6;
+      }
+      .authorIcon.videoAdUiIconV2 {
+        height: 40px;
+        margin: 0 10px;
+        background: none;
+      }
+      .authorIcon.videoAdUiIconV2 > img {
+        width: 40px;
+        height: 40px;
+      }
+      .vastIcon.videoAdUiIconV2 {
+        height: 20px;
+        width: 100px;
+        margin: 2px 2px;
+        pointer-events: auto;
+      }
+      .vastIcon.videoAdUiIconV2 > img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+      }
+      .vastIcon.videoAdUiIconV2.freeplayAtv {
+        padding: 8px;
+        background: rgba(14, 14, 15, 0.4);
+        margin-top: 20px;
+        margin-left: 24px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        pointer-events: auto;
+      }
+      .vastIcon.videoAdUiIconV2.freeplayAtv > img {
+        color: #e8eaed;
+        display: block;
+      }
+      .unifyRefresh .authorIcon.videoAdUiIconV2 {
+        height: 40px;
+        width: 40px;
+        margin: 0 8px 0 0;
+      }
+      .unifyRefresh .authorIcon.videoAdUiIconV2 > img {
+        width: 100%;
+        height: 100%;
+      }
+      .videoAdUiInstreamUxRefresh .authorIcon.videoAdUiIconV2 {
+        -webkit-box-ordinal-group: 0;
+        -moz-box-ordinal-group: 0;
+        -ms-flex-order: 0;
+        -webkit-order: 0;
+        order: 0;
+        margin: 8px 0 8px 8px;
+        height: 54px;
+        font-size: 18px;
+      }
+      .videoAdUiInstreamUxRefresh .authorIcon.videoAdUiIconV2 > img {
+        width: 54px;
+        height: 54px;
+      }
+      .videoAdUiInstreamUxRefresh
+        .videoAdUiTopBarCollapsed
+        .authorIcon.videoAdUiIconV2 {
+        display: none;
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .authorIcon.videoAdUiIconV2 {
+          height: 32px;
+        }
+        .videoAdUiInstreamUxRefresh .authorIcon.videoAdUiIconV2 > img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall .authorIcon.videoAdUiIconV2 {
+          -webkit-box-ordinal-group: 1;
+          -moz-box-ordinal-group: 1;
+          -ms-flex-order: 1;
+          -webkit-order: 1;
+          order: 1;
+          -webkit-box-flex: 0;
+          box-flex: 0;
+          -ms-flex-positive: 0;
+          -webkit-flex-grow: 0;
+          flex-grow: 0;
+          height: 56px;
+          width: 56px;
+          margin: 0;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .authorIcon.videoAdUiIconV2 {
+          margin: 16px;
+        }
+      }
+      .unifyRefresh.endcapUi .authorIcon.videoAdUiIconV2 {
+        height: 56px;
+        width: 56px;
+        margin: 8px;
+      }
+      .videoAdUiIconFallback {
+        position: fixed;
+        overflow: hidden;
+        left: 50%;
+        top: 50%;
+        object-fit: none;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+      .videoAdUiLearnMore {
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        font-family: arial, sans-serif;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: normal;
+        padding: 5px;
+      }
+      .videoAdUiRtl .videoAdUiLearnMore {
+        float: left;
+      }
+      .learnMoreContainer {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(239, 239, 239, 0.6);
+      }
+      .learnMoreButton {
+        display: inline-block;
+        position: absolute;
+        top: 58%;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        padding: 8px 18px;
+        font-size: larger;
+        font-family: sans-serif;
+        color: #3e82f7;
+        background-color: #fff;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+        border: 1px solid #ddd;
+        text-decoration: none;
+      }
+      .unifyRefresh .learnMoreContainer {
+        position: absolute;
+        margin: 0 12px 12px 0;
+        bottom: 0;
+        right: 0;
+        pointer-events: auto;
+        z-index: -webkit-calc(1000 + 1);
+        z-index: -moz-calc(1000 + 1);
+        z-index: calc(1000 + 1);
+        width: auto;
+        height: auto;
+        left: auto;
+        background: transparent;
+        top: auto;
+      }
+      .unifyRefresh.gma-instream .learnMoreContainer {
+        margin: 12px 12px 0 0;
+        top: 0;
+        bottom: auto;
+      }
+      .unifyRefresh .learnMoreButton {
+        color: #fff;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        background-color: #3c4043;
+        border: none;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.12))
+          drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24));
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.12))
+          drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24));
+        padding: 8px 24px;
+        text-align: center;
+        position: static;
+        top: auto;
+        left: auto;
+        -webkit-transform: none;
+        transform: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+      .unifyRefresh .learnMoreButton.black-learn-more-text {
+        color: #000;
+      }
+      .unifyRefresh .learnMoreButton.white-learn-more-button {
+        background-color: #fff;
+      }
+      .unifyRefresh.gma-instream .learnMoreButton {
+        font-size: 18px;
+      }
+      .unifyRefresh.endcapUi .learnMoreContainer {
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+        margin: 8px;
+        position: static;
+        top: auto;
+        left: auto;
+        width: auto;
+        height: auto;
+        -webkit-transform: none;
+        transform: none;
+        background: none;
+      }
+      .unifyRefresh.endcapUi .learnMoreButton {
+        padding: 8px 24px;
+        font-size: 14px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        color: #3c4043;
+        background-color: #fff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        font-weight: bold;
+        pointer-events: auto;
+        text-align: center;
+        position: static;
+        top: auto;
+        left: auto;
+        width: auto;
+        height: auto;
+        -webkit-transform: none;
+        transform: none;
+        border: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+      @media (max-width: 480px) {
+        .learnMoreButton {
+          padding: 4px 9px;
+        }
+      }
+      .videoAdUiInstreamUxRefresh .learnMoreContainer {
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+        position: relative;
+        width: auto;
+        height: auto;
+        background: none;
+        margin-left: auto;
+        padding: 8px;
+        white-space: nowrap;
+      }
+      .videoAdUiInstreamUxRefresh .learnMoreButton {
+        position: relative;
+        padding: 15px;
+        top: auto;
+        left: auto;
+        -webkit-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform: none;
+        font-size: 18px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        font-weight: bold;
+        pointer-events: auto;
+        text-align: center;
+        border: 1px solid #b2b2b2;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        cursor: pointer;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        min-width: 125px;
+        -ms-flex-negative: 0;
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiTopBarCollapsed .learnMoreButton {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid #fff;
+      }
+      .videoAdUiRtl.videoAdUiInstreamUxRefresh .learnMoreContainer {
+        margin-right: auto;
+        margin-left: unset;
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .learnMoreButton {
+          padding: 8px;
+          font-size: 12px;
+          min-width: 80px;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall .learnMoreContainer {
+          -webkit-box-ordinal-group: 3;
+          -moz-box-ordinal-group: 3;
+          -ms-flex-order: 3;
+          -webkit-order: 3;
+          order: 3;
+          -webkit-flex-basis: 25vh;
+          -ms-flex-preferred-size: 25vh;
+          flex-basis: 25vh;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-flow: column;
+          -webkit-flex-flow: column;
+          flex-flow: column;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+          margin: 0;
+          position: static;
+          top: auto;
+          left: auto;
+          width: auto;
+          height: auto;
+          -webkit-transform: none;
+          transform: none;
+          border: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .learnMoreContainer {
+          padding: 10px;
+          -webkit-flex-basis: auto;
+          -ms-flex-preferred-size: auto;
+          flex-basis: auto;
+          width: 80%;
+        }
+        .unifyRefresh.unifyRefresh-tall .learnMoreButton {
+          font-size: 15px;
+          letter-spacing: 0.54px;
+          padding: 12px 24px;
+          min-width: 140px;
+          max-width: 80vh;
+        }
+        .unifyRefresh.unifyRefresh-tall.engagement .learnMoreButton {
+          background-color: #0084ff;
+          min-width: 100%;
+          width: 100%;
+        }
+        .unifyRefresh.endcapUi .learnMoreButton {
+          padding: 12px 48px;
+        }
+      }
+      .overlayContainer {
+        position: relative;
+        display: inline-block;
+      }
+      .overlayContainer.clickable img,
+      .overlayContainer.clickable .overlayTextContainer {
+        cursor: pointer;
+      }
+      .autoalign {
+        text-align: center;
+        bottom: 0;
+      }
+      .nonLinearContainer {
+        position: absolute;
+        width: 100%;
+      }
+      .overlayContainer.scalable {
+        min-width: 320px;
+        max-width: 450px;
+        width: 100%;
+        margin: auto;
+      }
+      .overlayTextContainer {
+        background-image: -webkit-linear-gradient(
+          top,
+          rgba(20, 20, 20, 0.6),
+          rgba(209, 209, 209, 0.6)
+        );
+        background-image: -moz-linear-gradient(
+          top,
+          rgba(20, 20, 20, 0.6),
+          rgba(209, 209, 209, 0.6)
+        );
+        background-image: -ms-linear-gradient(
+          top,
+          rgba(20, 20, 20, 0.6),
+          rgba(209, 209, 209, 0.6)
+        );
+        background-image: -o-linear-gradient(
+          top,
+          rgba(20, 20, 20, 0.6),
+          rgba(209, 209, 209, 0.6)
+        );
+        background-image: linear-gradient(
+          top,
+          rgba(20, 20, 20, 0.6),
+          rgba(209, 209, 209, 0.6)
+        );
+        border: 1px solid rgba(102, 102, 102, 0.7);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        text-align: left;
+        margin-bottom: 5px;
+        padding-left: 10px;
+        padding-top: 3px;
+        padding-bottom: 10px;
+      }
+      .overlayTextImage {
+        -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 3px 5px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 3px 5px;
+        box-shadow: rgba(0, 0, 0, 0.5) 0 3px 5px;
+        height: 57px;
+        width: 79px;
+      }
+      .textImageDuration {
+        background: #000;
+        color: #fff;
+        font: 10px arial, sans-serif;
+        padding: 2px;
+        position: absolute;
+        right: 0;
+        bottom: 7px;
+      }
+      .overlayTextTitle {
+        text-decoration: underline;
+        color: #fff;
+        display: block;
+        font: bold 14px arial, sans-serif;
+        margin: 7px 16px 0 0;
+        overflow: hidden;
+        padding-bottom: 4px;
+        text-overflow: ellipsis;
+        text-shadow: rgba(0, 0, 0, 0.7) 0px 4px 4px;
+        white-space: nowrap;
+      }
+      .overlayTextDescription {
+        color: #fff;
+        font: 12px arial, sans-serif;
+        margin-top: -3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-shadow: rgba(0, 0, 0, 0.7) 0px 4px 4px;
+        white-space: nowrap;
+      }
+      .overlayTextUrl {
+        bottom: 7px;
+        color: #f9fcc0;
+        font: bold 11px arial, sans-serif;
+        left: 10px;
+        text-decoration: none;
+        text-shadow: rgba(0, 0, 0, 0.7) 0px 4px 4px;
+      }
+      .textImageContainer {
+        float: left;
+        position: relative;
+        margin: 3px 10px 0 0;
+      }
+      .overlayTextAttribution {
+        bottom: 12px;
+        color: #fff;
+        font: 11px arial, sans-serif;
+        position: absolute;
+        right: 5px;
+        text-decoration: none;
+        text-shadow: rgba(0, 0, 0, 0.7) 0px 4px 4px;
+      }
+      .unifyRefresh .videoAdUiPlayPauseControl {
+        opacity: 0;
+        pointer-events: none;
+        -webkit-transition: opacity 200ms;
+        -moz-transition: opacity 200ms;
+        -o-transition: opacity 200ms;
+        transition: opacity 200ms;
+        -webkit-filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+      }
+      .unifyRefresh .videoAdUiPlayPauseControl.fade-in {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .unifyRefresh .videoAdUiPlayPauseControl svg {
+        width: 56px;
+        height: 56px;
+      }
+      .videoAdUiPlayPauseControl.fullScreen {
+        opacity: 0;
+        pointer-events: none;
+        -webkit-transition: opacity 200ms;
+        -moz-transition: opacity 200ms;
+        -o-transition: opacity 200ms;
+        transition: opacity 200ms;
+        -webkit-filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .videoAdUiPlayPauseControl.fullScreen.fade-in {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .videoAdUiPlayPauseControl.fullScreen .videoAdUiPauseIcon,
+      .videoAdUiPlayPauseControl.fullScreen svg {
+        width: 80px;
+        height: 80px;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiPlayPauseControl {
+        pointer-events: auto;
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiPlayPauseControl.fullScreen .videoAdUiPauseIcon,
+        .videoAdUiPlayPauseControl.fullScreen svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+      .recallButtonContainer {
+        height: 12px;
+        width: 24px;
+      }
+      .autoalign .recallButtonContainer {
+        margin: auto;
+      }
+      .recallButtonBackground {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(200, 200, 200, 0.5);
+        border: solid rgba(255, 255, 255, 0.5) 1px;
+      }
+      .recallButtonBackground:hover {
+        background-color: #fff;
+        border: solid rgba(0, 0, 0, 0.5) 1px;
+      }
+      .recallButtonIcon {
+        z-index: 1000;
+        cursor: pointer;
+      }
+      .videoAdUiPreSkipContainer {
+        bottom: 22px;
+        cursor: default;
+        padding: 15px 0 15px 15px;
+        pointer-events: auto;
+        position: absolute;
+        right: 0;
+        z-index: 1000;
+      }
+      #google-rewarded-video .videoAdUiPreSkipContainer {
+        bottom: 55px;
+      }
+      .limaRewardedUiV2 .videoAdUiPreSkipContainer {
+        bottom: 0;
+      }
+      .videoAdUi-mobile .videoAdUiPreSkipContainer {
+        bottom: 11px;
+        padding: 8px 0 8px 8px;
+      }
+      .videoAdUiPreSkipButton {
+        background: rgba(0, 0, 0, 0.8);
+        min-width: 155px;
+        padding: 6px;
+      }
+      .videoAdUi-mobile .videoAdUiPreSkipButton {
+        min-width: 105px;
+      }
+      .noTextSkipButton .videoAdUiPreSkipButton {
+        min-width: 30px;
+      }
+      .videoAdUiPreSkipText {
+        color: #e6e6e6;
+        font-family: arial, sans-serif;
+        font-weight: normal;
+        font-size: 11px;
+        line-height: 21px;
+        padding-right: 0;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+      }
+      .gma-instream .videoAdUiPreSkipText {
+        font-size: 14px;
+        line-height: 24px;
+      }
+      .videoAdUiSkipContainer {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        bottom: 22px;
+        cursor: pointer;
+        padding: 15px 0 15px 15px;
+        pointer-events: auto;
+        position: absolute;
+        right: 0;
+        z-index: 1000;
+      }
+      #google-rewarded-video .videoAdUiSkipContainer {
+        bottom: 55px;
+      }
+      .videoAdUi-mobile .videoAdUiSkipContainer {
+        bottom: 11px;
+        padding: 8px 0 8px 8px;
+      }
+      .videoAdUiSkipWidgetV2 .videoAdUiPreSkipContainer,
+      .videoAdUiSkipWidgetV2 .videoAdUiSkipContainer {
+        bottom: 0;
+      }
+      .raisedSkipButton.videoAdUiSkipWidgetV2 .videoAdUiPreSkipContainer,
+      .raisedSkipButton.videoAdUiSkipWidgetV2 .videoAdUiSkipContainer,
+      .gma-instream .videoAdUiSkipWidgetV2 .videoAdUiPreSkipContainer,
+      .gma-instream .videoAdUiSkipWidgetV2 .videoAdUiSkipContainer {
+        bottom: 22px;
+      }
+      .videoAdUi-mobile
+        .raisedSkipButton.videoAdUiSkipWidgetV2
+        .videoAdUiPreSkipContainer,
+      .videoAdUi-mobile
+        .raisedSkipButton.videoAdUiSkipWidgetV2
+        .videoAdUiSkipContainer {
+        bottom: 11px;
+      }
+      .raisedSkipButton .videoAdUiAction:focus {
+        margin: 1px;
+      }
+      .videoAdUiAction {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 0;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        color: #fff;
+        cursor: pointer;
+        direction: ltr;
+        font-family: arial, sans-serif;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: normal;
+        min-width: 150px;
+        padding: 10px 7px;
+        text-align: center;
+      }
+      .videoAdUiAction.autofocused:focus {
+        outline-width: 0;
+      }
+      .videoAdUi-mobile .videoAdUiAction {
+        font-size: 16px;
+        min-width: 100px;
+        padding: 6px 7px;
+      }
+      .videoAdUiAction:hover {
+        border-color: rgba(255, 255, 255, 1);
+      }
+      .gma-instream .videoAdUiAction {
+        border-width: 0;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .videoAdUiSkipButtonExperimentalText {
+        display: inline-block;
+        font-size: 18px;
+        vertical-align: middle;
+        width: initial;
+      }
+      .videoAdUiSkipIcon {
+        display: inline-block;
+        height: 24px;
+        margin-left: 2px;
+        vertical-align: middle;
+        width: 24px;
+      }
+      .videoAdUiSkipIcon > svg {
+        fill: white;
+        height: 24px;
+        width: 24px;
+        -webkit-filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2));
+        filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2));
+      }
+      .gma-instream .videoAdUiSkipIcon {
+        margin-left: 5px;
+      }
+      .videoAdUiSkipButton {
+        line-height: normal;
+        min-width: 0;
+        padding: 7px 6px 7px 10px;
+        width: auto;
+        margin: 0;
+      }
+      .gma-instream .videoAdUiSkipButton {
+        padding-left: 15px;
+        padding-right: 8px;
+        font-size: 18px;
+      }
+      @media all and (min-width: 800px) and (min-height: 400px) {
+        .videoAdUiPreSkipButton {
+          min-width: 200px;
+        }
+        .videoAdUiPreSkipText {
+          font-size: 13px;
+          padding-right: 6px;
+        }
+        .gma-instream .videoAdUiPreSkipText {
+          font-size: 18px;
+        }
+        .raisedSkipButton .videoAdUiAction {
+          min-width: 200px !important;
+        }
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiPreSkipButton {
+        -webkit-border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+        border-radius: 4px 0 0 4px;
+        padding: 6px 0;
+        min-width: 20px;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiPreSkipText {
+        font-size: 14px;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiSkipButton {
+        -webkit-border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+        border-radius: 4px 0 0 4px;
+      }
+      @media (max-width: 300px), (max-height: 150px) {
+        .videoAdUiInstreamUxRefresh .videoAdUiPreSkipText,
+        .videoAdUiInstreamUxRefresh .videoAdUiSkipButtonExperimentalText {
+          font-size: 12px;
+        }
+        .videoAdUiInstreamUxRefresh .videoAdUiSkipButton {
+          padding: 3px 4px;
+          min-width: 60px;
+        }
+        .videoAdUiInstreamUxRefresh .videoAdUiSkipIcon,
+        .videoAdUiInstreamUxRefresh .videoAdUiSkipIcon > svg {
+          height: 16px;
+          width: 16px;
+        }
+        .videoAdUiInstreamUxRefresh
+          .videoAdUiSkipWidgetV2
+          .videoAdUiPreSkipContainer,
+        .videoAdUiInstreamUxRefresh
+          .videoAdUiSkipWidgetV2
+          .videoAdUiSkipContainer {
+          bottom: 15px;
+        }
+      }
+      .wtaIcon {
+        cursor: pointer;
+        padding: 5px;
+        position: relative;
+        top: 3px;
+      }
+      .smallWtaIcon .wtaIcon {
+        top: 0;
+      }
+      .smallWtaIcon.videoAdUiWtaIconContainer {
+        opacity: 0.9;
+        text-align: initial;
+        vertical-align: middle;
+        cursor: pointer;
+        padding-left: 5px;
+        height: 14px;
+      }
+      .smallWtaIcon .wtaIconSvg {
+        width: 15px;
+        height: 15px;
+      }
+      .unifyRefresh .videoAdUiWtaIconContainer {
+        pointer-events: auto;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row;
+        -webkit-flex-flow: row;
+        flex-flow: row;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        margin: 4px 8px;
+        position: absolute;
+      }
+      .unifyRefresh .wtaIcon {
+        position: static;
+        padding: 0 4px;
+      }
+      .unifyRefresh .wtaIcon > svg {
+        fill: white;
+        height: 16px;
+        width: 16px;
+        -webkit-filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2));
+        filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.2));
+      }
+      .unifyRefresh .wtaIconAdBadge {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        padding: 0 4px;
+        background-color: transparent;
+        border-style: solid;
+        border-width: thin;
+        border-color: white;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        color: white;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        .unifyRefresh.unifyRefresh-tall .wtaIconAdBadge {
+          color: rgba(0, 0, 0, 0.56);
+          border-color: rgba(0, 0, 0, 0.56);
+        }
+        .unifyRefresh.unifyRefresh-tall .wtaIcon > svg {
+          fill: rgba(0, 0, 0, 0.56);
+          -webkit-filter: unset;
+          filter: unset;
+        }
+      }
+      .overlayContainer .videoAdUiWtaIconContainer {
+        position: absolute;
+        top: 6px;
+        right: 30px;
+      }
+      .videoAdUiInstreamUxRefresh .videoAdUiWtaIconContainer {
+        pointer-events: auto;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row;
+        -webkit-flex-flow: row;
+        flex-flow: row;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        padding: 2px 0;
+        -webkit-box-ordinal-group: 0;
+        -moz-box-ordinal-group: 0;
+        -ms-flex-order: 0;
+        -webkit-order: 0;
+        order: 0;
+      }
+      .videoAdUiInstreamUxRefresh .wtaIconAdBadge {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        padding-left: 4px;
+        color: #80868b;
+        background-color: #fff;
+        height: 17px;
+        width: 32px;
+        border: 1px solid #e8eaed;
+        font-size: 12px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin-left: -4px;
+        margin-bottom: -4px;
+      }
+      .videoAdUiInstreamUxRefresh .wtaIconAdBadge > svg {
+        fill: #80868b;
+        height: 16px;
+        width: 16px;
+        margin-bottom: -4px;
+      }
+    </style>
+    <script type="text/javascript" src="bridge.js">
+    </script>
+  </head>
+  <body>
+    <script>
+      // Leave this as var since it isn't compiled and is run on TVs that don't support es6.
+      var bridge;
+      // Initialize the bridge on script execution to handle connecting when embedded.
+      window.addEventListener(
+        "load",
+        function () {
+          bridge = new ima.Bridge(new ima.IframeBridge());
+        },
+        /* useCapture= */ false
+      );
+    </script>
+  </body>
+</html>
